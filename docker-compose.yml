@@ -1,0 +1,57 @@
+services:
+  nginx:
+
+  jenkins:
+    build: ./jenkins/
+    restart: always
+    user: root
+    expose:
+      - "8080"
+      - "50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - devsecops_network
+  db:
+    image: postgres:12.7-alpine
+    restart: always
+    container_name: faraday_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=faraday
+    expose:
+      - '5432'
+    volumes:
+      - "db:/var/lib/postgresql/data:rw"
+  redis:
+    image: 'redis:6.2-alpine'
+    container_name: faraday_redis
+    expose:
+      - '6379'
+  faraday:
+    image: index.docker.io/faradaysec/faraday
+    restart: always
+    container_name: faraday_app
+    entrypoint: "/entrypoint.sh"
+    volumes:
+      - "$HOME/.faraday:/home/faraday/.faraday:rw"
+    environment:
+      - PGSQL_USER=postgres
+      - PGSQL_PASSWD=postgres
+      - PGSQL_HOST=db
+      - PGSQL_DBNAME=faraday
+      - REDIS_SERVER=redis
+    depends_on:
+      - db
+      - redis
+    expose:
+      - "5985"
+
+volumes:
+  jenkins_home:
+  db:
+
+networks:
+  devsecops_network:
