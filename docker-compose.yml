@@ -1,0 +1,103 @@
+services:
+  nginx:
+    build: ./nginx/
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - devsecops_network
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=gitea_db
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=postgres
+    restart: always
+    expose:
+      - 3000
+    volumes:
+      - "gitea:/data"
+    networks:
+      - devsecops_network
+  gitea_db:
+    image: postgres:14
+    container_name: gitea_database
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=gitea
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - "gitea_database:/var/lib/postgresql/data"
+    networks:
+      - devsecops_network
+  jenkins:
+    build: ./jenkins/
+    restart: always
+    user: root
+    expose:
+      - "8080"
+      - "50000"
+    volumes:
+      - "jenkins_home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - devsecops_network
+  faraday_db:
+    image: postgres:12.7-alpine
+    restart: always
+    container_name: faraday_faraday_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=faraday
+    expose:
+      - '5432'
+    volumes:
+      - "faraday_db:/var/lib/postgresql/data"
+    networks:
+      - devsecops_network
+  redis:
+    image: 'redis:6.2-alpine'
+    container_name: faraday_redis
+    expose:
+      - '6379'
+    networks:
+      - devsecops_network
+  faraday:
+    image: faradaysec/faraday:5.0.0
+    restart: always
+    container_name: faraday_app
+    entrypoint: "/entrypoint.sh"
+    volumes:
+      - "faraday:/home/faraday/.faraday"
+    environment:
+      - PGSQL_USER=postgres
+      - PGSQL_PASSWD=postgres
+      - PGSQL_HOST=faraday_db
+      - PGSQL_DBNAME=faraday
+      - REDIS_SERVER=redis
+    depends_on:
+      - faraday_db
+      - redis
+    expose:
+      - "5985"
+    networks:
+      - devsecops_network
+
+volumes:
+  gitea:
+  gitea_database:
+  jenkins_home:
+  faraday:
+  faraday_db:
+
+networks:
+  devsecops_network:
