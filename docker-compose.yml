@@ -14,8 +14,8 @@ services:
       - "8080"
       - "50000"
     volumes:
-      - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "jenkins_home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - devsecops_network
   db:
@@ -29,7 +29,7 @@ services:
     expose:
       - '5432'
     volumes:
-      - "db:/var/lib/postgresql/data:rw"
+      - "db:/var/lib/postgresql/data"
     networks:
       - devsecops_network
   redis:
@@ -40,12 +40,12 @@ services:
     networks:
       - devsecops_network
   faraday:
-    image: index.docker.io/faradaysec/faraday
+    image: faradaysec/faraday:5.0.0
     restart: always
     container_name: faraday_app
     entrypoint: "/entrypoint.sh"
     volumes:
-      - "$HOME/.faraday:/home/faraday/.faraday:rw"
+      - "faraday:/home/faraday/.faraday"
     environment:
       - PGSQL_USER=postgres
       - PGSQL_PASSWD=postgres
@@ -62,6 +62,7 @@ services:
 
 volumes:
   jenkins_home:
+  faraday:
   db:
 
 networks:

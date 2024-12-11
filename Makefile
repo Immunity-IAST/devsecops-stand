@@ -1,5 +1,7 @@
 all: up
 
+rebuild: clean up
+
 up:
 	docker-compose up -d --build
 
@@ -10,6 +12,6 @@ clean:
 	docker-compose down -v
 
 creds:
-	docker-compose exec faraday faraday-manage change-password
+	docker-compose logs faraday | findstr Admin
 
 .PHONY: up down clean creds

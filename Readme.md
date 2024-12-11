@@ -9,4 +9,14 @@
 127.0.0.1 faraday.devops.local
 ```
 
+Start:
 
+```shell
+make
+```
+
+Get Faraday credentials:
+
+```shell
+make creds
+```
