@@ -8,3 +8,5 @@ docker-workflow
 credentials-binding
 pipeline-stage-view
 dependency-check-jenkins-plugin
+gitea
+branch-api
