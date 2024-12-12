@@ -108,7 +108,59 @@ make change_creds
 
 ## Добавление анализируемых проектов
 
-...
+### Добавление репозитория в Gitea
+
+1. Создайте репозизторий в `Gitea`:
+
+![](assets/project_1.png)
+
+2. Создайте `Multibranch Pipeline` в `Jenkins` для репозитория:
+
+![](assets/project_2.png)
+
+Укажите данные для нового репозитория и нажмите кнопку `Create Repository`.
+
+3. Следуйте командам на скриншоте для отправки локального `git`-репозитория в `Gitea`:
+
+![](assets/project_3.png)
+
+### Альтернативный способ: миграция репозитория
+
+Для примера мигрируем проект уязвимого Django-приложения [Vulnerable Polls](https://github.com/kaakaww/vuln_django_play).
+
+1. При добавлении нового репозитория перейдите по ссылке `Migrate repository`:
+
+![](assets/project_alt_1.png)
+
+2. Выберите платформу, откуда нужно мигрировать репозиторий:
+
+![](assets/project_alt_2.png)
+
+3. Укажите адрес репозитория, его новое название и нажмите кнопку `Migrate Repository`:
+
+![](assets/project_alt_3.png)
+
+### Создание CI/CD-конвейера в Jenkins
+
+1. Нажмите `New Item` в левом меню:
+
+![](assets/pipe_1.png)
+
+2. Укажите имя конвейера и выберите `Multibranch Pipeline`:
+
+![](assets/pipe_2.png)
+
+3. Укажите настройки нового конвейера:
+
+![](assets/pipe_3.png)
+
+Нажмите `Add source` в `Branch Sources`:
+
+![](assets/pipe_4.png)
+
+Затем выберите учётные данные Gitea, созданные ранее. После этого в `Owner` укажите имя пользователя Gitea, затем выберите git-репозиторий:
+
+![](assets/pipe_5.png)
 
 ## Анализ результатов
 
