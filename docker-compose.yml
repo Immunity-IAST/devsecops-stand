@@ -73,7 +73,7 @@ services:
     networks:
       - devsecops_network
   faraday:
-    image: faradaysec/faraday:5.0.0
+    image: faradaysec/faraday:latest
     restart: always
     container_name: faraday_app
     entrypoint: "/entrypoint.sh"
