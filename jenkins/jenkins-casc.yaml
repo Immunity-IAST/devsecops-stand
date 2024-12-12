@@ -49,8 +49,8 @@ jobs:
   - script: >
       pipelineJob('Template DevSecOps pipeline') {
         parameters {
-          stringParam('REPO_URL', 'https://github.com/Contrast-Security-OSS/vulnpy', 'URL репозитория для клонирования')
-          stringParam('BRANCH_NAME', 'master', 'Ветка для клонирования')
+          stringParam('REPO_URL', 'https://github.com/kaakaww/vuln_django_play', 'URL репозитория для клонирования')
+          stringParam('BRANCH_NAME', 'main', 'Ветка для клонирования')
         }
         definition {
           cps {
@@ -60,27 +60,25 @@ jobs:
                     stages {
                         stage('Checkout') {
                             steps {
-                                checkout([$class: 'GitSCM', 
-                                          branches: [[name: "*/${params.BRANCH_NAME}"]],
-                                          userRemoteConfigs: [[url: "${params.REPO_URL}"]]
-                                ])
+                                sh 'git clone https://github.com/jinghao1/DockerVulspace'
                             }
                         }
                         stage('SAST (Bandit)') {
                             agent {
                                 docker {
                                     image 'python:3.10'
+                                    reuseNode true
                                 }
                             }
                             steps {
                                 echo 'Preparing environment...'
                                 sh 'pip install bandit'
-                                sh 'python3 -m bandit -r .'
-                            }
-                        }
-                        stage('Deploy') {
-                            steps {
-                                echo 'Deploying...'
+                                sh 'ls -la'
+      
+                                echo 'Runnig SAST...'
+                                sh 'python3 -m bandit -r . -f xml -o bandit_sast.xml || true'
+      
+                                archiveArtifacts artifacts: 'bandit_sast.xml', allowEmptyArchive: true, fingerprint: true
                             }
                         }
                     }
