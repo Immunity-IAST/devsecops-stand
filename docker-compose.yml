@@ -69,6 +69,7 @@ services:
     container_name: faraday_redis
     expose:
       - '6379'
+    restart: always
     networks:
       - devsecops_network
   faraday:
