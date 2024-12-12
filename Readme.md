@@ -56,11 +56,41 @@ make
 
 ## Первоначальная настройка Jenkins
 
-...
+1. Перейдите по адресу `jenkins.devops.local`:
+
+![](assets/jenkins_1.png)
+
+> [!NOTE]
+> При развёртывании Jenkins автоматически создаются 3 пользователя:
+> - Админ: `admin:admin`
+> - Разработчик: `developer:developer`
+> - Наблюдатель: `viewer:viewer`
+
+2. Перейдите в `Manage Jenkins` -> `System` -> `Gitea Servers`:
+
+![](assets/jenkins_2.png)
+
+![](assets/jenkins_3.png)
+
+3. Добавьте сервер:
+
+![](assets/jenkins_4.png)
+
+4. Укажите название сервера и адрес, как это указано на скриншоте:
+
+![](assets/jenkins_5.png)
+
+5. Создайте учётные данные для Gitea сервера (`Manage hooks` -> `Add`):
+
+![](assets/jenkins_6.png)
+
+6. Далее нажмите кнопку `Save` внизу:
+
+![](assets/jenkins_7.png)
 
 ## Первоначальная настройка Faraday
 
-Get Faraday credentials:
+Для получения учётных данных для `Faraday` выполните следующую команду в терминале:
 
 ```shell
 make creds
