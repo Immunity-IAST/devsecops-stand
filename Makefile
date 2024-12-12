@@ -14,4 +14,7 @@ clean:
 creds:
 	docker-compose logs faraday | findstr Admin
 
-.PHONY: up down clean creds
+change_creds:
+	docker-compose exec faraday faraday-manage change-password
+
+.PHONY: up down clean creds change_creds
