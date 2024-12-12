@@ -48,10 +48,6 @@ tool:
 jobs:
   - script: >
       pipelineJob('Template DevSecOps pipeline') {
-        parameters {
-          stringParam('REPO_URL', 'https://github.com/kaakaww/vuln_django_play', 'URL репозитория для клонирования')
-          stringParam('BRANCH_NAME', 'main', 'Ветка для клонирования')
-        }
         definition {
           cps {
             script(''' 
@@ -77,9 +73,57 @@ jobs:
       
                                 echo 'Runnig SAST...'
                                 sh 'python3 -m bandit -r . -f xml -o bandit_sast.xml || true'
+                                
+                                echo 'Here is the report...'
+                                sh 'cat bandit_sast.xml || true'
       
                                 archiveArtifacts artifacts: 'bandit_sast.xml', allowEmptyArchive: true, fingerprint: true
                             }
+                        }
+                        stage('Run application') {
+                            steps {
+                                sh 'docker network create dast_scan || true'
+                                sh 'docker run -d --name test --network dast_scan nginx'
+                            }
+                        }
+                        stage('DAST (OWASP ZAP)') {
+                            agent {
+                                docker {
+                                    image 'zaproxy/zap-stable'
+                                    args '--network dast_scan'
+                                    reuseNode true
+                                }
+                            }
+                            steps {
+                                echo 'Preparing environment...'
+                                sh 'mkdir /zap/wrk/'
+                                sh 'cp -r * /zap/wrk/'
+                                
+                                echo 'Runnig DAST...'
+                                sh 'zap-baseline.py -t http://test -x zap_dast.xml || echo 0'
+                                sh 'cp /zap/wrk/zap_dast.xml .'
+                                
+                                echo 'Here is the report...'
+                                sh 'cat /zap/wrk/zap_dast.xml'
+                                
+                                archiveArtifacts artifacts: 'zap_dast.xml', allowEmptyArchive: true, fingerprint: true
+                            }
+                        }
+                        stage('Stop application') {
+                            steps {
+                                sh 'docker stop test && docker rm test'
+                            }
+                        }
+                        stage('Test') {
+                            steps {
+                                sh 'ls -la'
+                            }
+                        }
+                    }
+                    post {
+                        always {
+                            sh 'docker stop test || true'
+                            sh 'docker rm test || true'
                         }
                     }
                 }
