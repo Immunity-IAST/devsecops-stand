@@ -102,9 +102,13 @@ make
 <details>
 <summary>👀 Где это?</summary>
 
+<hr/>
+
 ![](assets/jenkins_2.png)
 
 ![](assets/jenkins_3.png)
+
+<hr/>
 
 </details>
 
@@ -116,11 +120,22 @@ make
 
 4. Укажите название сервера и адрес, как это указано на скриншоте:
 
-![](assets/jenkins_5.png)
+<div align="center">
+<img src="assets/jenkins_5.png" />
+</div>
 
-5. Создайте учётные данные для Gitea сервера (`Manage hooks` -> `Add`):
+5. Создайте учётные данные для Gitea сервера (`Manage hooks` -> `Add`).
+
+<details>
+<summary>👀 Пример</summary>
+
+<hr/>
 
 ![](assets/jenkins_6.png)
+
+<hr/>
+
+</details>
 
 6. Далее нажмите кнопку `Save` внизу:
 
