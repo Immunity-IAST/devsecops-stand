@@ -102,7 +102,7 @@ make
 
 3. Добавьте сервер:
 
-<center><img src="assets/jenkins_4.png"></center>
+<p text-align="center"><img src="assets/jenkins_4.png"></p>
 
 4. Укажите название сервера и адрес, как это указано на скриншоте:
 
