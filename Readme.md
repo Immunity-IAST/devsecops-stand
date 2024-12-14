@@ -100,12 +100,6 @@ make
 
 1. Перейдите по адресу `jenkins.devops.local`.
 
-<div align="center">
-
-<img src="assets/jenkins_1.png">
-
-</div>
-
 2. Перейдите в `Manage Jenkins` -> `System` -> `Gitea Servers`.
 
 <details>
@@ -123,19 +117,29 @@ make
 
 3. Добавьте сервер:
 
-<div align="center">
+<details>
+<summary>👀 Как это выглядит?</summary>
+
+<hr/>
 
 <img src="assets/jenkins_4.png" />
 
-</div>
+<hr/>
 
-4. Укажите название сервера и адрес, как это указано на скриншоте:
+</details>
 
-<div align="center">
+4. Укажите название сервера и адрес `http://gitea:3000`.
+
+<details>
+<summary>👀 Пример</summary>
+
+<hr/>
 
 <img src="assets/jenkins_5.png" />
 
-</div>
+<hr/>
+
+</details>
 
 5. Создайте учётные данные для Gitea сервера (`Manage hooks` -> `Add`).
 
