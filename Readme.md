@@ -75,13 +75,13 @@ make
 
 3. Перейдите на вкладку `Register Account`, введите данные для административного аккаунта и нажмите кнопку `Register Account`:
 
-<img src="assets/gitea_3.png" align="center">
+<img src="assets/gitea_3.png">
 
 ## Первоначальная настройка Jenkins
 
 1. Перейдите по адресу `jenkins.devops.local`.
 
-<img src="assets/jenkins_1.png" align="center">
+<img src="assets/jenkins_1.png">
 
 > [!NOTE]
 > При развёртывании Jenkins автоматически создаются 3 пользователя:
@@ -89,7 +89,7 @@ make
 > - Разработчик: `developer:developer`
 > - Наблюдатель: `viewer:viewer`
 
-2. Перейдите в `Manage Jenkins` -> `System` -> `Gitea Servers`:
+2. Перейдите в `Manage Jenkins` -> `System` -> `Gitea Servers`.
 
 <details>
 <summary>👀 Где это?</summary>
@@ -102,7 +102,7 @@ make
 
 3. Добавьте сервер:
 
-<img src="assets/jenkins_4.png" align="center">
+<center><img src="assets/jenkins_4.png"></center>
 
 4. Укажите название сервера и адрес, как это указано на скриншоте:
 
