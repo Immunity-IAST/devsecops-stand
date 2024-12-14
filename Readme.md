@@ -307,28 +307,29 @@ make change_creds
 
 </div>
 
-2. Укажите имя конвейера и выберите `Multibranch Pipeline`:
-
-<div align="center">
-
-![](assets/pipe_2.png)
-
-</div>
-
-3. Укажите настройки нового конвейера.
+2. Укажите имя конвейера и выберите `Multibranch Pipeline`.
 
 <details>
 <summary>👀 Пример</summary>
 
 <hr/>
 
-![](assets/pipe_3.png)
+![](assets/pipe_2.png)
 
 <hr/>
 
 </details>
 
-4. Там же нажмите `Add source` в `Branch Sources`:
+3. Укажите настройки нового конвейера.
+
+<details>
+<summary>👀 Детали</summary>
+
+<hr/>
+
+![](assets/pipe_3.png)
+
+Нажмите `Add source` в `Branch Sources`:
 
 <div align="center">
 
@@ -343,6 +344,10 @@ make change_creds
 ![](assets/pipe_5.png)
 
 </div>
+
+<hr/>
+
+</details>
 
 ## Требования к git-репозиторию
 
