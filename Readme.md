@@ -95,6 +95,7 @@ make
 
 </div>
 
+
 > [!NOTE]
 > При развёртывании Jenkins автоматически создаются 3 пользователя:
 > - Админ: `admin:admin`
@@ -182,7 +183,7 @@ make change_creds
 
 </div>
 
-3. Добавьте секреты в Jenkins для авторизации в Faraday (`Manage Jenkins` -> `Credentials` -> `Add credentials`).
+3. Добавьте секреты в `Jenkins` для авторизации в `Faraday` (`Manage Jenkins` -> `Credentials` -> `Add credentials`).
 
 <details>
 <summary>👀 Где это?</summary>
@@ -235,10 +236,10 @@ make change_creds
 
 </div>
 
-2. Создайте `Multibranch Pipeline` в `Jenkins` для репозитория.
+2. Укажите данные для создания нового репозитория.
 
 <details>
-<summary>👀 Где это?</summary>
+<summary>👀 Пример</summary>
 
 <hr/>
 
