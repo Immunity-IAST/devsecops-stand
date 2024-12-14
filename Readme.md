@@ -77,7 +77,7 @@ make
 
 </details>
 
-3. Перейдите на вкладку `Register Account`, введите данные для административного аккаунта и нажмите кнопку `Register Account`:
+3. Перейдите на вкладку `Register Account`, введите данные для административного аккаунта и нажмите кнопку `Register Account`.
 
 <details>
 <summary>👀 Пример</summary>
@@ -115,7 +115,7 @@ make
 
 </details>
 
-3. Добавьте сервер:
+3. Добавьте сервер.
 
 <details>
 <summary>👀 Как это выглядит?</summary>
@@ -192,7 +192,11 @@ make change_creds
 
 <hr/>
 
+<div align="center">
+
 ![](assets/jenkins_secret.png)
+
+</div>
 
 <hr/>
 
@@ -205,11 +209,15 @@ make change_creds
 
 <hr/>
 
+<div align="center">
+
 ![](assets/secret_1.png)
 
 ![](assets/secret_2.png)
 
 ![](assets/secret_3.png)
+
+</div>
 
 <hr/>
 
@@ -240,7 +248,11 @@ make change_creds
 
 <hr/>
 
+<div align="center">
+
 ![](assets/project_1.png)
+
+</div>
 
 <hr/>
 
@@ -326,7 +338,11 @@ make change_creds
 
 <hr/>
 
+<div align="center">
+
 ![](assets/pipe_1.png)
+
+</div>
 
 <hr/>
 
