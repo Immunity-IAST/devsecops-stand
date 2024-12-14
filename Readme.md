@@ -67,13 +67,13 @@ make
 <details>
 <summary>👀 Как это выглядит?</summary>
 
-<hr>
+<hr/>
 
 ![](assets/gitea_1.png)
 
 ![](assets/gitea_2.png)
 
-<hr>
+<hr/>
 
 </details>
 
