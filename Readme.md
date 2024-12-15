@@ -5,11 +5,12 @@
 </div>
 
 <div align="center">
-<h1></h1>
+
 <img src="https://img.shields.io/badge/Gitea-34495E?style=for-the-badge&logo=gitea&logoColor=5D9425">
 <img src="https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white">
 <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)">
 <img src="https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white">
+<h1></h1>
 </div>
 
 Кейс интеграции `статического` (SAST), `динамического` (DAST) и `интерактивного` (IAST) анализа в процессы безопасной разработки.
